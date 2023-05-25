@@ -3,34 +3,38 @@ package model;
 public class Test {
 	public static void main(String[] args) {
 		try {
-			DanhSachCanHo ds = new DanhSachCanHo();
-			ds.xemDanhSachCanHo();
-			ds.muaCanHo(Constants.PENTHOUSE,"PEN1", 10, false, 1, 10, 10);
-			ds.muaCanHo(Constants.BAPHONGNGU,"BPN1", 10, false, 1, 10, 10);
-			ds.muaCanHo(Constants.HAIPHONGNGU,"HPN1", 10, false, 1, 10, 10);
-			ds.muaCanHo(Constants.HAIPHONGNGU,"HPN2", 10, false, 1, 10, 10);
-			ds.muaCanHo(Constants.BAPHONGNGU,"BPN2", 11, false, 4, 1, 12);
-			ds.xemDanhSachDaBan();
-			ds.xemDanhSachCanHo();
-			
-			ds.chinhSuaThongTinCanHoMua(Constants.HAIPHONGNGU, "HPN2", 10, false, 2, 1, 11);
-			ds.xemDanhSachDaBan();
-			ds.xemDanhSachCanHo();
-			
-			ds.xoaCanHoDaMua("HPN3", 1);
-			ds.xemDanhSachDaBan();
-			ds.xemDanhSachCanHo();
-			
-			System.out.println(ds.timKiemTheoMaCanHoa("HPN2"));
-			System.out.println(ds.timKiemTheoMaCanHoa("HDB"));
-			
-			ds.sapXepTheoMa();
-			ds.xemDanhSachDaBan();
+			DanhSachCanHo cty = new DanhSachCanHo();
+			cty.xemDanhSachCanHo();
+			cty.muaCanHo("BPN1");
+			cty.tienSoTienTraThem("BPN1");
+			cty.muaCanHo("PEN2");
+			cty.tienSoTienTraThem("PEN2");
+			System.out.println("\n");
+			cty.xemDanhSachCanHo();
+			System.out.println("\n");
+			cty.xemDanhSachDaBan();
+			cty.muaCanHo("BPN1");
+			cty.chinhSuaThongTinCanHo("PEN2", 50, false, 10);
+			cty.tienSoTienTraThem("PEN2");
+			cty.chinhSuaThongTinCanHoDaMua("BPN1", 3, false, 4);
+			cty.tienSoTienTraThem("BPN1");
+			cty.xemDanhSachCanHo();
+			cty.xemDanhSachDaBan();
+			cty.xoaCanHoDaMua("PEN2");
+			cty.xemDanhSachCanHo();
+			cty.xemDanhSachDaBan();
+			System.out.println("\n");
+			System.out.println(cty.timKiemTheoMaCanHo("HPN2"));
+			System.out.println("\n");
+			cty.sapXepTheoMa();
+			cty.xemDanhSachCanHo();
+			cty.thongKeCanHoTheoLoai();
+			cty.xemDanhSachDaBan();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 }

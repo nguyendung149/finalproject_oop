@@ -3,34 +3,11 @@ package model;
 import java.util.Objects;
 
 public class BaPhongNgu extends CanHo {
-	private long soLuong;
-	private double giaTien;
+	private static double giaTien;
 
-	public BaPhongNgu() {
-		// TODO Auto-generated constructor stub
-		super("Ba phòng ngủ");
-		this.soLuong = 300;
+	public BaPhongNgu(String maCanHo, double dienTich, boolean banCong, int soTang) {
+		super(maCanHo, dienTich, banCong, soTang, "Ba Phòng Ngủ");
 		this.giaTien = 3;
-	}
-
-	public BaPhongNgu(String maCanHo,double dienTich, boolean banCong, int soTang, double tienChenh_BanCong, double tienChenh_Tang) {
-		super(maCanHo,dienTich, banCong, soTang, "Ba Phong Ngu", tienChenh_BanCong, tienChenh_Tang);
-		this.soLuong = 300;
-		this.giaTien = 3;
-	}
-
-	/**
-	 * @return the soLuong
-	 */
-	public long getSoLuong() {
-		return soLuong;
-	}
-
-	/**
-	 * @param soLuong the soLuong to set
-	 */
-	public void setSoLuong(long soLuong) {
-		this.soLuong = soLuong;
 	}
 
 	/**
@@ -49,25 +26,19 @@ public class BaPhongNgu extends CanHo {
 
 	/**
 	 * @return the maCanHo
-	*/
+	 */
 
 	@Override
 	public double tinhTien() {
 		// TODO Auto-generated method stub
-		return this.giaTien + this.getTienChenh_BanCong() + this.getTienChenh_Tang();
-	}
-
-	@Override
-	public String toString() {
-		return "BaPhongNgu [Loại căn hộ: " + super.loaiCanHo + ", Số lương: " + this.soLuong + ", Giá gốc: "
-				+ this.giaTien + " tỷ]";
+		return this.giaTien + this.getTienChenh_BanCong()/10 + this.getTienChenh_Tang()/10;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(giaTien, soLuong);
+		result = prime * result + Objects.hash(giaTien);
 		return result;
 	}
 
@@ -80,14 +51,31 @@ public class BaPhongNgu extends CanHo {
 		if (getClass() != obj.getClass())
 			return false;
 		BaPhongNgu other = (BaPhongNgu) obj;
-		return Double.doubleToLongBits(giaTien) == Double.doubleToLongBits(other.giaTien)
-				&& Objects.equals(maCanHo, other.maCanHo) && soLuong == other.soLuong;
+		return Double.doubleToLongBits(giaTien) == Double.doubleToLongBits(other.giaTien);
 	}
 
-	@Override
-	public int compareTo(CanHo o) {
-		// TODO Auto-generated method stub
-		return 0;
+	public class DanhSachBaPhongNgu {
+		private int soLuong;
+
+		public DanhSachBaPhongNgu() {
+			// TODO Auto-generated constructor stub
+			this.soLuong = 0;
+		}
+
+		/**
+		 * @return the soLuong
+		 */
+		public int getSoLuong() {
+			return soLuong;
+		}
+
+		/**
+		 * @param soLuong the soLuong to set
+		 */
+		public void setSoLuong(int soLuong) {
+			this.soLuong = soLuong;
+		}
+
 	}
 
 }

@@ -3,33 +3,11 @@ package model;
 import java.util.Objects;
 
 public class Penthouse extends CanHo {
-	private long soLuong;
-	private double giaTien;
-	public Penthouse() {
-		// TODO Auto-generated constructor stub
-		super("Penthouse");
-		this.soLuong = 12;
+	private static double giaTien;
+
+	public Penthouse(String maCanHo, double dienTich, boolean banCong, int soTang) {
+		super(maCanHo, dienTich, banCong, soTang, "Penthouse");
 		this.giaTien = 6;
-	}
-
-	public Penthouse(String maCanHo,double dienTich, boolean banCong, int soTang, double tienChenh_BanCong, double tienChenh_Tang) {
-		super(maCanHo,dienTich, banCong, soTang, "Penthouse", tienChenh_BanCong, tienChenh_Tang);
-		this.soLuong = 12;
-		this.giaTien = 6;
-	}
-
-	/**
-	 * @return the soLuong
-	 */
-	public long getSoLuong() {
-		return soLuong;
-	}
-
-	/**
-	 * @param soLuong the soLuong to set
-	 */
-	public void setSoLuong(long soLuong) {
-		this.soLuong = soLuong;
 	}
 
 	/**
@@ -49,20 +27,14 @@ public class Penthouse extends CanHo {
 	@Override
 	public double tinhTien() {
 		// TODO Auto-generated method stub
-		return this.giaTien + this.getTienChenh_BanCong() + this.getTienChenh_Tang();
-	}
-
-	@Override
-	public String toString() {
-		return "Penthouse [Loại căn hộ: " + super.loaiCanHo + ", Số lương: " + this.soLuong + ", Giá gốc: "
-				+ this.giaTien + " tỷ]";
+		return this.giaTien + this.getTienChenh_BanCong()/10 + this.getTienChenh_Tang()/10;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();
-		result = prime * result + Objects.hash(giaTien, soLuong);
+		result = prime * result + Objects.hash(giaTien);
 		return result;
 	}
 
@@ -75,13 +47,31 @@ public class Penthouse extends CanHo {
 		if (getClass() != obj.getClass())
 			return false;
 		Penthouse other = (Penthouse) obj;
-		return Double.doubleToLongBits(giaTien) == Double.doubleToLongBits(other.giaTien) && soLuong == other.soLuong;
+		return Double.doubleToLongBits(giaTien) == Double.doubleToLongBits(other.giaTien);
 	}
 
-	@Override
-	public int compareTo(CanHo o) {
-		// TODO Auto-generated method stub
-		return 0;
+	public class DanhSachPentHouse {
+		private int soLuong;
+
+		public DanhSachPentHouse() {
+			// TODO Auto-generated constructor stub
+			this.soLuong = 0;
+		}
+
+		/**
+		 * @return the soLuong
+		 */
+		public int getSoLuong() {
+			return soLuong;
+		}
+
+		/**
+		 * @param soLuong the soLuong to set
+		 */
+		public void setSoLuong(int soLuong) {
+			this.soLuong = soLuong;
+		}
+
 	}
 
 }

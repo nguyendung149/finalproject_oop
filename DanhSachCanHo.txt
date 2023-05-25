@@ -1,0 +1,7 @@
+HPN1, 100, true, 8, Hai Phòng Ngủ 
+BPN1, 100, true, 3, Ba Phòng Ngủ
+HPN2, 150, false, 4, Hai Phòng Ngủ 
+BPN2, 50, true, 2, Ba Phòng Ngủ 
+HPN3, 25, true, 2, Hai Phòng Ngủ 
+PEN1, 100, true, 10, Penthouse 
+PEN2, 100, true, 8, Penthouses

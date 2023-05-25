@@ -1,63 +1,184 @@
 
 package model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+import model.HaiPhongNgu.DanhSachHaiPhongNgu;
 
 public class DanhSachCanHo {
-	private ArrayList<CanHo> danhSachConLai;
+	private ArrayList<CanHo> danhSach;
 	private ArrayList<CanHo> danhSachDaBan;
-	private HaiPhongNgu hpn = new HaiPhongNgu();
-	private BaPhongNgu bpn = new BaPhongNgu();
-	private Penthouse pen = new Penthouse();
+	private static final String pathName = "C:\\Users\\ASUS\\eclipse-workspace\\QuanLyDuAnChungCu\\DanhSachCanHo.txt";
+	private static int soLuongHPN, soLuongBPN, soLuongPEN = 0;
 
 	public DanhSachCanHo() {
 		// TODO Auto-generated constructor stub
-		this.danhSachConLai = new ArrayList<CanHo>();
-		this.danhSachConLai.add(hpn);
-		this.danhSachConLai.add(bpn);
-		this.danhSachConLai.add(pen);
+		this.danhSach = new ArrayList<CanHo>();
+		try {
+
+			File file = new File(pathName);
+			FileReader reader = new FileReader(file);
+			BufferedReader br = new BufferedReader(reader);
+			while (true) {
+				String text = br.readLine();
+				if (text == null) {
+					break;
+				}
+				StringTokenizer token = new StringTokenizer(text, ",");
+				String maCanHo = token.nextToken();
+				maCanHo = maCanHo.trim();
+				String temp = token.nextToken();
+				temp = temp.trim();
+				double dienTich = Double.valueOf(temp);
+				temp = token.nextToken();
+				temp = temp.trim();
+				boolean banCong = Boolean.valueOf(temp);
+				temp = token.nextToken();
+				temp = temp.trim();
+				int soTang = Integer.valueOf(temp);
+				String loaiCanHo = token.nextToken();
+				loaiCanHo = loaiCanHo.trim();
+				if (maCanHo.startsWith("HPN")) {
+					CanHo ch = new HaiPhongNgu(maCanHo, dienTich, banCong, soTang);
+					danhSach.add(ch);
+					soLuongHPN++;
+				} else if (maCanHo.startsWith("BPN")) {
+					CanHo ch = new BaPhongNgu(maCanHo, dienTich, banCong, soTang);
+					danhSach.add(ch);
+					soLuongBPN++;
+				} else if (maCanHo.startsWith("PEN")) {
+					CanHo ch = new Penthouse(maCanHo, dienTich, banCong, soTang);
+					danhSach.add(ch);
+					soLuongPEN++;
+				}
+			}
+			br.close();
+			reader.close();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		this.danhSachDaBan = new ArrayList<CanHo>();
 	}
 
-	public void xemDanhSachCanHo() {
-		for (CanHo canHo : danhSachConLai) {
-			System.out.println(canHo);
-			System.out.println("\n");
+	public void thongKeCanHoTheoLoai() {
+		System.out.println("Số căn Hai Phòng Ngủ còn lại: " + soLuongHPN);
+		System.out.println("Số căn Ba Phòng Ngủ còn lại: " + soLuongBPN);
+		System.out.println("Số căn Penthouse còn lại: " + soLuongPEN);
+		System.out.println("Một số mã căn hộ còn lại: ");
+		for (CanHo canHo : danhSach) {
+			if (!canHo.isDaBan()) {
+				System.out.println(canHo.getMaCanHo());
+			}
+
 		}
 	}
 
-	public void chinhSuaThongTinGiaGocHaiPhongNgu(double t) {
-		this.hpn.setGiaTien(t);
+	public void muaCanHo(String maCanHo) {
+		for (CanHo canHo1 : danhSach) {
+			if (canHo1.getMaCanHo().equals(maCanHo) && !canHo1.isDaBan()) {
+
+				if (maCanHo.startsWith("HPN")) {
+					CanHo e = canHo1;
+					danhSachDaBan.add(e);
+					soLuongHPN--;
+					for (CanHo canHo : danhSach) {
+						if (canHo.getMaCanHo().equals(maCanHo)) {
+							canHo.setDaBan(true);
+						}
+					}
+					return;
+				} else if (maCanHo.startsWith("BPN")) {
+					CanHo e = canHo1;
+					danhSachDaBan.add(e);
+					soLuongBPN--;
+					for (CanHo canHo : danhSach) {
+						if (canHo.getMaCanHo().equals(maCanHo)) {
+							canHo.setDaBan(true);
+						}
+					}
+					return;
+				} else if (maCanHo.startsWith(maCanHo)) {
+					CanHo e = canHo1;
+					danhSachDaBan.add(e);
+					soLuongPEN--;
+					for (CanHo canHo : danhSach) {
+						if (canHo.getMaCanHo().equals(maCanHo)) {
+							canHo.setDaBan(true);
+						}
+					}
+					return;
+				}
+			}
+
+		}
+		System.out.println("Căn hộ đã bán!");
 	}
 
-	public void chinhSuaThongTinGiaGocBaPhongNgu(double t) {
-		this.bpn.setGiaTien(t);
+	public void tienSoTienTraThem(String maCanHo) {
+		for (CanHo e : danhSachDaBan) {
+			if (e.getMaCanHo().equals(maCanHo)) {
+				Scanner sc = new Scanner(System.in);
+				if (e.getMaCanHo().startsWith("HPN")) {
+					System.out.println("Hai Phòng Ngủ");
+					if (e.getSoTang() < 8) {
+						System.out.println("Nhập số tiền thêm cho tầng từ 1 đến 2 trăm triệu: ");
+						double tienTang = sc.nextDouble();
+						e.setTienChenh_Tang(tienTang);
+					} else if (e.getSoTang() > 20 && e.getSoTang() < 30) {
+						System.out.println("Nhập số tiền thêm cho tầng từ 2 đến 3 trăm triệu: ");
+						double tienTang = sc.nextDouble();
+						e.setTienChenh_Tang(tienTang);
+					}
+					if (e.isBanCong()) {
+						System.out.println("Nhập số tiền thêm cho ban công từ 1 đến 2 trăm triệu: ");
+						double tienBanCong = sc.nextDouble();
+						e.setTienChenh_BanCong(tienBanCong);
+					}
+				} else if (e.getMaCanHo().startsWith("BPN")) {
+					System.out.println("Ba Phòng Ngủ");
+					if (e.getSoTang() < 8) {
+						System.out.println("Nhập số tiền thêm cho tầng từ 3 đến 5 trăm triệu: ");
+						double tienTang = sc.nextDouble();
+						e.setTienChenh_Tang(tienTang);
+					} else if (e.getSoTang() > 20 && e.getSoTang() < 30) {
+						System.out.println("Nhập số tiền thêm cho tầng từ 4 đến 6 trăm triệu: ");
+						double tienTang = sc.nextDouble();
+						e.setTienChenh_Tang(tienTang);
+					}
+					if (e.isBanCong()) {
+						System.out.println("Nhập số tiền thêm cho ban công từ 2 đến 4 trăm triệu: ");
+						double tienBanCong = sc.nextDouble();
+						e.setTienChenh_BanCong(tienBanCong);
+					}
+				} else if (e.getMaCanHo().startsWith("PEN")) {
+					System.out.println("PENTHOSUE");
+					System.out.println("Nhập số tiền thêm cho tầng từ 5 đến 7 trăm triệu: ");
+					double tienTang = sc.nextDouble();
+					e.setTienChenh_Tang(tienTang);
+					if (e.isBanCong()) {
+						System.out.println("Nhập số tiền thêm cho ban công từ 5 đến 7 trăm triệu: ");
+						double tienBanCong = sc.nextDouble();
+						e.setTienChenh_BanCong(tienBanCong);
+					}
+				}
+			}
+		}
 	}
 
-	public void chinhSuaThongTinGiaGocPenthouse(double t) {
-		this.pen.setGiaTien(t);
-	}
-
-	public void muaCanHo(int i, String maCanHo,double dienTich, boolean banCong, int soTang, double tienChenh_BanCong,
-			double tienChenh_Tang) {
-		if (i == Constants.HAIPHONGNGU) {
-			CanHo e = new HaiPhongNgu( maCanHo,dienTich, banCong, soTang, tienChenh_BanCong, tienChenh_Tang);
-			danhSachDaBan.add(e);
-			long count = this.hpn.getSoLuong() - 1;
-			this.hpn.setSoLuong(count);
-		} else if (i == Constants.BAPHONGNGU) {
-			CanHo e = new BaPhongNgu( maCanHo,dienTich, banCong, soTang, tienChenh_BanCong, tienChenh_Tang);
-			danhSachDaBan.add(e);
-			long count = this.bpn.getSoLuong() - 1;
-			this.bpn.setSoLuong(count);
-		} else if (i == Constants.PENTHOUSE) {
-			CanHo e = new Penthouse( maCanHo,dienTich, banCong, soTang, tienChenh_BanCong, tienChenh_Tang);
-			danhSachDaBan.add(e);
-			long count = this.pen.getSoLuong() - 1;
-			this.pen.setSoLuong(count);
+	public void xemDanhSachCanHo() {
+		for (CanHo canHo : danhSach) {
+			System.out.println(canHo);
 		}
 	}
 
@@ -65,53 +186,115 @@ public class DanhSachCanHo {
 		for (CanHo canHo : danhSachDaBan) {
 			System.out.println("\n");
 			System.out.println("Mã căn hộ: " + canHo.getMaCanHo());
-			System.out.println("Loai can ho: " + canHo.getLoaiCanHo());
+			System.out.println("Loại căn hộ: " + canHo.getLoaiCanHo());
 			System.out.println("Diện tích: " + canHo.getDienTich());
 			System.out.println("Có ban công không: " + canHo.isBanCong());
 			System.out.println("Số tầng: " + canHo.getSoTang());
-			System.out.println("Gia Tien: " + canHo.tinhTien());
+			System.out.println("Giá tiền: " + canHo.tinhTien());
 			System.out.println("\n\n");
 		}
 	}
 
-	public void xoaCanHoDaMua(String maCanHo, int i) {
+	public int timKiemCanHoTrongDanhSach(String maCanHo) {
+		for (CanHo canHo : danhSach) {
+			if (canHo.getMaCanHo().equals(maCanHo)) {
+				return danhSach.indexOf(canHo);
+			}
+		}
+		return -1;
+	}
+
+	public void xoaCanHoDaMua(String maCanHo) {
 		int temp = 0;
 		for (CanHo canHo : danhSachDaBan) {
 			if ((canHo.maCanHo).equals(maCanHo)) {
 				danhSachDaBan.remove(temp);
-				if (i == Constants.HAIPHONGNGU) {
-					this.hpn.setSoLuong(this.hpn.getSoLuong() + 1);
-				} else if (i == Constants.BAPHONGNGU) {
-					this.bpn.setSoLuong(this.bpn.getSoLuong() + 1);
-				} else if (i == Constants.PENTHOUSE) {
-					this.pen.setSoLuong(this.pen.getSoLuong() + 1);
+				if (maCanHo.startsWith("HPN")) {
+					soLuongHPN++;
+				} else if (maCanHo.startsWith("BPN")) {
+					soLuongBPN++;
+				} else if (maCanHo.startsWith("PEN")) {
+					soLuongPEN++;
 				}
 				break;
 			}
 			temp++;
 		}
 
+		danhSach.get(this.timKiemCanHoTrongDanhSach(maCanHo)).setDaBan(false);
+
 	}
 
-	public void chinhSuaThongTinCanHoMua(int i, String maCanHo, double dienTich, boolean banCong, int soTang,
-			double tienChenh_BanCong, double tienChenh_Tang) {
+	public void chinhSuaThongTinCanHo(String maCanHo, double dienTich, boolean banCong, int soTang) {
+		int temp = 0;
+		for (CanHo canHo : danhSach) {
+			if ((canHo.maCanHo).equals(maCanHo)) {
+				if (maCanHo.startsWith("HPN")) {
+					danhSach.remove(temp);
+					CanHo ch = new HaiPhongNgu(maCanHo, dienTich, banCong, soTang);
+					danhSach.add(temp, ch);
+					break;
+				} else if (maCanHo.startsWith("BPN")) {
+					danhSach.remove(temp);
+					CanHo ch = new BaPhongNgu(maCanHo, dienTich, banCong, soTang);
+					danhSach.add(temp, ch);
+					break;
+
+				} else if (maCanHo.startsWith("PEN")) {
+					danhSach.remove(temp);
+					CanHo ch = new Penthouse(maCanHo, dienTich, banCong, soTang);
+					danhSach.add(temp, ch);
+					break;
+				}
+
+			}
+			temp++;
+		}
+		int temp1 = 0;
+		for (CanHo canHo : danhSachDaBan) {
+			if ((canHo.maCanHo).equals(maCanHo)) {
+				this.timKiemTheoMaCanHo(maCanHo).setDaBan(true);
+				if (maCanHo.startsWith("HPN")) {
+					danhSachDaBan.remove(temp1);
+					CanHo ch = new HaiPhongNgu(maCanHo, dienTich, banCong, soTang);
+					danhSachDaBan.add(temp1, ch);
+					break;
+				} else if (maCanHo.startsWith("BPN")) {
+					danhSachDaBan.remove(temp1);
+					CanHo ch = new BaPhongNgu(maCanHo, dienTich, banCong, soTang);
+					danhSachDaBan.add(temp1, ch);
+					break;
+
+				} else if (maCanHo.startsWith("PEN")) {
+					danhSachDaBan.remove(temp1);
+					CanHo ch = new Penthouse(maCanHo, dienTich, banCong, soTang);
+					danhSachDaBan.add(temp1, ch);
+					break;
+				}
+
+			}
+			temp1++;
+		}
+	}
+
+	public void chinhSuaThongTinCanHoDaMua(String maCanHo, double dienTich, boolean banCong, int soTang) {
 		int temp = 0;
 		for (CanHo canHo : danhSachDaBan) {
 			if ((canHo.maCanHo).equals(maCanHo)) {
-				if (i == Constants.HAIPHONGNGU) {
+				if (maCanHo.startsWith("HPN")) {
 					danhSachDaBan.remove(temp);
-					CanHo ch = new HaiPhongNgu( maCanHo,dienTich, banCong, soTang, tienChenh_BanCong, tienChenh_Tang);
+					CanHo ch = new HaiPhongNgu(maCanHo, dienTich, banCong, soTang);
 					danhSachDaBan.add(temp, ch);
 					break;
-				} else if (i == Constants.BAPHONGNGU) {
+				} else if (maCanHo.startsWith("BPN")) {
 					danhSachDaBan.remove(temp);
-					CanHo ch = new BaPhongNgu( maCanHo,dienTich, banCong, soTang, tienChenh_BanCong, tienChenh_Tang);
+					CanHo ch = new BaPhongNgu(maCanHo, dienTich, banCong, soTang);
 					danhSachDaBan.add(temp, ch);
 					break;
 
-				} else if (i == Constants.PENTHOUSE) {
+				} else if (maCanHo.startsWith("PEN")) {
 					danhSachDaBan.remove(temp);
-					CanHo ch = new Penthouse( maCanHo,dienTich, banCong, soTang, tienChenh_BanCong, tienChenh_Tang);
+					CanHo ch = new Penthouse(maCanHo, dienTich, banCong, soTang);
 					danhSachDaBan.add(temp, ch);
 					break;
 				}
@@ -121,19 +304,19 @@ public class DanhSachCanHo {
 		}
 	}
 
-	public int timKiemTheoMaCanHoa(String maCanHo) {
+	public CanHo timKiemTheoMaCanHo(String maCanHo) {
 		int temp = 0;
-		for (CanHo canHo : danhSachDaBan) {
+		for (CanHo canHo : danhSach) {
 			if ((canHo.maCanHo).equals(maCanHo)) {
-				return temp;
+				return (CanHo) danhSach.get(temp);
 			}
 			temp++;
 		}
-		return -1;
+		return null;
 	}
 
 	public void sapXepTheoMa() {
-		Collections.sort(danhSachDaBan, new Comparator<CanHo>() {
+		Collections.sort(danhSach, new Comparator<CanHo>() {
 
 			@Override
 			public int compare(CanHo o1, CanHo o2) {
@@ -146,5 +329,4 @@ public class DanhSachCanHo {
 		});
 	}
 
-	
 }

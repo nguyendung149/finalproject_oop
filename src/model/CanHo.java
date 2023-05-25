@@ -1,32 +1,32 @@
 package model;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 
-public abstract class CanHo implements Comparable<CanHo> {
+public abstract class CanHo  {
 	protected String maCanHo;
 	protected double dienTich;
 	protected boolean banCong;
 	protected int soTang;
 	protected String loaiCanHo;
-	private double tienChenh_BanCong;
-	private double tienChenh_Tang;
-
+	protected double tienChenh_BanCong;
+	protected double tienChenh_Tang;
+	protected boolean daBan;
+	protected DecimalFormat df = new DecimalFormat("0.##");
 	public CanHo(String loaiCanHo) {
 		this.loaiCanHo = loaiCanHo;
 	}
-	
-	public CanHo(String maCanHo,double dienTich, boolean banCong, int soTang, String loaiCanHo,
-			double tienChenh_BanCong, double tienChenh_Tang) {
+
+	public CanHo(String maCanHo, double dienTich, boolean banCong, int soTang, String loaiCanHo) {
 		this.maCanHo = maCanHo;
 		this.dienTich = dienTich;
 		this.banCong = banCong;
 		this.soTang = soTang;
 		this.loaiCanHo = loaiCanHo;
-		this.tienChenh_BanCong = tienChenh_BanCong;
-		this.tienChenh_Tang = tienChenh_Tang;
+		this.tienChenh_BanCong = 0;
+		this.tienChenh_Tang = 0;
+		this.daBan = false;
 	}
-
-	
 
 	/**
 	 * @return the dienTich
@@ -83,7 +83,7 @@ public abstract class CanHo implements Comparable<CanHo> {
 	public void setLoaiCanHo(String loaiCanHo) {
 		this.loaiCanHo = loaiCanHo;
 	}
-	
+
 	/**
 	 * @return the tienChenh_BanCong
 	 */
@@ -111,7 +111,6 @@ public abstract class CanHo implements Comparable<CanHo> {
 	public void setTienChenh_Tang(double tienChenh_Tang) {
 		this.tienChenh_Tang = tienChenh_Tang;
 	}
-	
 
 	/**
 	 * @return the maCanHo
@@ -125,6 +124,20 @@ public abstract class CanHo implements Comparable<CanHo> {
 	 */
 	public void setMaCanHo(String maCanHo) {
 		this.maCanHo = maCanHo;
+	}
+
+	/**
+	 * @return the daBan
+	 */
+	public boolean isDaBan() {
+		return daBan;
+	}
+
+	/**
+	 * @param daBan the daBan to set
+	 */
+	public void setDaBan(boolean daBan) {
+		this.daBan = daBan;
 	}
 
 	public abstract double tinhTien();
@@ -149,5 +162,10 @@ public abstract class CanHo implements Comparable<CanHo> {
 				&& Double.doubleToLongBits(tienChenh_Tang) == Double.doubleToLongBits(other.tienChenh_Tang);
 	}
 
-	
+	@Override
+	public String toString() {
+		return "CanHo [maCanHo=" + maCanHo + ", dienTich=" + dienTich + ", banCong=" + banCong + ", soTang=" + soTang
+				+ ", loaiCanHo=" + loaiCanHo +", daBan=" + daBan + "]";
+	}
+
 }
