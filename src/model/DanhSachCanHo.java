@@ -72,6 +72,11 @@ public class DanhSachCanHo {
 	}
 
 	public void thongKeCanHoTheoLoai() {
+		for (CanHo canHo : danhSach) {
+			if (!canHo.isDaBan()) {
+				System.out.println(canHo);
+			}
+		}
 		System.out.println("Số căn Hai Phòng Ngủ còn lại: " + soLuongHPN);
 		System.out.println("Số căn Ba Phòng Ngủ còn lại: " + soLuongBPN);
 		System.out.println("Số căn Penthouse còn lại: " + soLuongPEN);

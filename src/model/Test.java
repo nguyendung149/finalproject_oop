@@ -28,6 +28,7 @@ public class Test {
 			System.out.println("\n");
 			cty.sapXepTheoMa();
 			cty.xemDanhSachCanHo();
+			System.out.println("\n");
 			cty.thongKeCanHoTheoLoai();
 			cty.xemDanhSachDaBan();
 		} catch (Exception e) {
