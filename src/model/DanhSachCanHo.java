@@ -89,47 +89,6 @@ public class DanhSachCanHo {
 		}
 	}
 
-	public void muaCanHo(String maCanHo) {
-		for (CanHo canHo1 : danhSach) {
-			if (canHo1.getMaCanHo().equals(maCanHo) && !canHo1.isDaBan()) {
-
-				if (maCanHo.startsWith("HPN")) {
-					CanHo e = canHo1;
-					danhSachDaBan.add(e);
-					soLuongHPN--;
-					for (CanHo canHo : danhSach) {
-						if (canHo.getMaCanHo().equals(maCanHo)) {
-							canHo.setDaBan(true);
-						}
-					}
-					return;
-				} else if (maCanHo.startsWith("BPN")) {
-					CanHo e = canHo1;
-					danhSachDaBan.add(e);
-					soLuongBPN--;
-					for (CanHo canHo : danhSach) {
-						if (canHo.getMaCanHo().equals(maCanHo)) {
-							canHo.setDaBan(true);
-						}
-					}
-					return;
-				} else if (maCanHo.startsWith(maCanHo)) {
-					CanHo e = canHo1;
-					danhSachDaBan.add(e);
-					soLuongPEN--;
-					for (CanHo canHo : danhSach) {
-						if (canHo.getMaCanHo().equals(maCanHo)) {
-							canHo.setDaBan(true);
-						}
-					}
-					return;
-				}
-			}
-
-		}
-		System.out.println("Căn hộ đã bán!");
-	}
-
 	public void tienSoTienTraThem(String maCanHo) {
 		for (CanHo e : danhSachDaBan) {
 			if (e.getMaCanHo().equals(maCanHo)) {
@@ -179,6 +138,51 @@ public class DanhSachCanHo {
 				}
 			}
 		}
+	}
+
+	public CanHo muaCanHo(String maCanHo) {
+		for (CanHo canHo1 : danhSach) {
+			if (canHo1.getMaCanHo().equals(maCanHo) && !canHo1.isDaBan()) {
+
+				if (maCanHo.startsWith("HPN")) {
+					CanHo e = canHo1;
+					danhSachDaBan.add(e);
+					this.tienSoTienTraThem(maCanHo);
+					soLuongHPN--;
+					for (CanHo canHo : danhSach) {
+						if (canHo.getMaCanHo().equals(maCanHo)) {
+							canHo.setDaBan(true);
+						}
+					}
+					return e;
+				} else if (maCanHo.startsWith("BPN")) {
+					CanHo e = canHo1;
+					danhSachDaBan.add(e);
+					this.tienSoTienTraThem(maCanHo);
+					soLuongBPN--;
+					for (CanHo canHo : danhSach) {
+						if (canHo.getMaCanHo().equals(maCanHo)) {
+							canHo.setDaBan(true);
+						}
+					}
+					return e;
+				} else if (maCanHo.startsWith("PEN")) {
+					CanHo e = canHo1;
+					danhSachDaBan.add(e);
+					this.tienSoTienTraThem(maCanHo);
+					soLuongPEN--;
+					for (CanHo canHo : danhSach) {
+						if (canHo.getMaCanHo().equals(maCanHo)) {
+							canHo.setDaBan(true);
+						}
+					}
+					return e;
+				}
+			}
+
+		}
+		System.out.println("Căn hộ đã bán!");
+		return null;
 	}
 
 	public void xemDanhSachCanHo() {

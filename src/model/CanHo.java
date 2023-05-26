@@ -3,7 +3,7 @@ package model;
 import java.text.DecimalFormat;
 import java.util.Objects;
 
-public abstract class CanHo  {
+public abstract class CanHo {
 	protected String maCanHo;
 	protected double dienTich;
 	protected boolean banCong;
@@ -13,8 +13,16 @@ public abstract class CanHo  {
 	protected double tienChenh_Tang;
 	protected boolean daBan;
 	protected DecimalFormat df = new DecimalFormat("0.##");
-	public CanHo(String loaiCanHo) {
-		this.loaiCanHo = loaiCanHo;
+
+	public CanHo() {
+		this.maCanHo = "";
+		this.dienTich = 0.0;
+		this.banCong = true;
+		this.soTang = 0;
+		this.loaiCanHo = "";
+		this.tienChenh_BanCong = 0;
+		this.tienChenh_Tang = 0;
+		this.daBan = false;
 	}
 
 	public CanHo(String maCanHo, double dienTich, boolean banCong, int soTang, String loaiCanHo) {
@@ -165,7 +173,7 @@ public abstract class CanHo  {
 	@Override
 	public String toString() {
 		return "CanHo [maCanHo=" + maCanHo + ", dienTich=" + dienTich + ", banCong=" + banCong + ", soTang=" + soTang
-				+ ", loaiCanHo=" + loaiCanHo +", daBan=" + daBan + "]";
+				+ ", loaiCanHo=" + loaiCanHo + ", daBan=" + daBan + "]";
 	}
 
 }
