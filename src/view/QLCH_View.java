@@ -26,6 +26,7 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JComboBox;
 
 public class QLCH_View extends JFrame {
 
@@ -42,6 +43,10 @@ public class QLCH_View extends JFrame {
 	private JTextField InHoaDon;
 	private JTable TableCanHo;
 	private JTable TableKhachHang;
+	private JLabel InMaKH;
+	private JLabel InHoVaTen;
+	private JLabel InCanHoDaMua;
+	private JLabel InThanhTien;
 
 	/**
 	 * Launch the application.
@@ -109,17 +114,17 @@ public class QLCH_View extends JFrame {
 		GiaTien = new JTextField();
 		GiaTien.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GiaTien.setColumns(10);
-		GiaTien.setBounds(140, 82, 196, 27);
+		GiaTien.setBounds(140, 90, 196, 27);
 		panel.add(GiaTien);
 
-		JLabel lblGiTin = new JLabel("Giá Tiền");
+		JLabel lblGiTin = new JLabel("Giá Gốc");
 		lblGiTin.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblGiTin.setBounds(10, 80, 101, 27);
+		lblGiTin.setBounds(10, 90, 83, 27);
 		panel.add(lblGiTin);
 
 		JLabel lblLoiCn = new JLabel("Loại Căn");
 		lblLoiCn.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblLoiCn.setBounds(10, 133, 101, 27);
+		lblLoiCn.setBounds(10, 140, 101, 27);
 		panel.add(lblLoiCn);
 
 		DienTich = new JTextField();
@@ -163,10 +168,6 @@ public class QLCH_View extends JFrame {
 		CheckKhong.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		CheckKhong.setBounds(766, 133, 96, 27);
 		panel.add(CheckKhong);
-
-		Choice LoaiCan = new Choice();
-		LoaiCan.setBounds(140, 136, 196, 27);
-		panel.add(LoaiCan);
 
 		JButton btnThemCH = new JButton("Thêm");
 		btnThemCH.setIcon(new ImageIcon(QLCH_View.class.getResource("+.png")));
@@ -224,11 +225,18 @@ public class QLCH_View extends JFrame {
 
 		TableCanHo = new JTable();
 		TableCanHo.setModel(new DefaultTableModel(
-				new Object[][] { { null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null },
-						{ null, null, null, null, null, null }, { null, null, null, null, null, null }, },
-				new String[] { "M\u00E3 C\u0103n H\u1ED9", "Gi\u00E1 Ti\u1EC1n", "Lo\u1EA1i C\u0103n",
-						"Di\u1EC7n T\u00EDch", "S\u1ED1 T\u1EA7ng", "Ban C\u00F4ng" }));
+			new Object[][] {
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+				{null, null, null, null, null, null, null},
+			},
+			new String[] {
+				 "M\u00E3 C\u0103n H\u1ED9", "Gi\u00E1 Ti\u1EC1n", "Lo\u1EA1i C\u0103n", "Di\u1EC7n T\u00EDch", "S\u1ED1 T\u1EA7ng", "Ban C\u00F4ng","Tình Trạng"
+			}
+		));
 		JScrollPane scrollPane = new JScrollPane(TableCanHo);
 		scrollPane.setBounds(10, 226, 1240, 277);
 		panel.add(scrollPane);
@@ -240,6 +248,10 @@ public class QLCH_View extends JFrame {
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(10, 187, 1240, 2);
 		panel.add(separator_1);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(140, 140, 196, 27);
+		panel.add(comboBox);
 
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Quản Lý Khách Hàng", new ImageIcon(QLCH_View.class.getResource("user.png")), panel_1, null);
@@ -410,22 +422,22 @@ public class QLCH_View extends JFrame {
 		lblMKhchHng_1_1_2_1.setBounds(10, 258, 119, 23);
 		panel_3.add(lblMKhchHng_1_1_2_1);
 
-		JLabel InMaKH = new JLabel("");
+		InMaKH = new JLabel("");
 		InMaKH.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		InMaKH.setBounds(233, 88, 163, 23);
 		panel_3.add(InMaKH);
 
-		JLabel InHoVaTen = new JLabel("");
+		InHoVaTen = new JLabel("");
 		InHoVaTen.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		InHoVaTen.setBounds(233, 136, 163, 23);
 		panel_3.add(InHoVaTen);
 
-		JLabel InCanHoDaMua = new JLabel("");
+		InCanHoDaMua = new JLabel("");
 		InCanHoDaMua.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		InCanHoDaMua.setBounds(233, 189, 163, 23);
 		panel_3.add(InCanHoDaMua);
 
-		JLabel InThanhTien = new JLabel("");
+		InThanhTien = new JLabel("");
 		InThanhTien.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		InThanhTien.setBounds(233, 258, 163, 23);
 		panel_3.add(InThanhTien);
