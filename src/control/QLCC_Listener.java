@@ -17,15 +17,15 @@ public class QLCC_Listener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		String command = e.getActionCommand();
-		if (command.equals("Mua")) {
+		if (command.equals("Mua_KH")) {
 			this.view.themKhachHang();
-		}else if(command.equals("Chỉnh sửa")) {
+		}else if(command.equals("Chỉnh sửa_KH")) {
 			this.view.chinhSua();
 		}else if(command.equals("Tìm")) {
 			this.view.layDuLieuTuBang();
-		}else if(command.equals("Xóa")) {
+		}else if(command.equals("Xóa_KH")) {
 			this.view.xoa();
-		}else if(command.equals("Sắp Xếp")) {
+		}else if(command.equals("Sắp Xếp_KH")) {
 			this.view.sapXep();
 		}
 	}

@@ -327,8 +327,10 @@ public class QLCH_View extends JFrame {
 		btnThemKH.setIcon(new ImageIcon(QLCH_View.class.getResource("+.png")));
 		btnThemKH.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnThemKH.setBounds(10, 536, 131, 50);
-		panel_1.add(btnThemKH);
+		btnThemKH.setActionCommand("Mua_KH");
 		btnThemKH.addActionListener(ac);
+		panel_1.add(btnThemKH);
+		
 		JButton btnTimKH = new JButton("Tìm");
 		btnTimKH.setIcon(new ImageIcon(QLCH_View.class.getResource("/view/find.png")));
 		btnTimKH.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -340,6 +342,7 @@ public class QLCH_View extends JFrame {
 		btnChinhKH.setIcon(new ImageIcon(QLCH_View.class.getResource("edit.png")));
 		btnChinhKH.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnChinhKH.setBounds(151, 536, 196, 50);
+		btnChinhKH.setActionCommand("Chỉnh sửa_KH");
 		btnChinhKH.addActionListener(ac);
 		panel_1.add(btnChinhKH);
 
@@ -348,6 +351,7 @@ public class QLCH_View extends JFrame {
 		btnXoaKH.setIcon(new ImageIcon(QLCH_View.class.getResource("delete.png")));
 		btnXoaKH.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnXoaKH.setBounds(357, 536, 131, 50);
+		btnXoaKH.setActionCommand("Xóa_KH");
 		btnXoaKH.addActionListener(ac);
 		panel_1.add(btnXoaKH);
 
@@ -356,8 +360,10 @@ public class QLCH_View extends JFrame {
 		btnSapXepKH.setIcon(new ImageIcon(QLCH_View.class.getResource("list.png")));
 		btnSapXepKH.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnSapXepKH.setBounds(498, 536, 171, 50);
+		btnSapXepKH.setActionCommand("Sắp Xếp_KH");
 		btnSapXepKH.addActionListener(ac);
 		panel_1.add(btnSapXepKH);
+		
 		SDT = new JTextField();
 		SDT.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		SDT.setColumns(10);
