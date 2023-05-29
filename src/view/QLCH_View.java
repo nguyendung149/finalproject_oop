@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Choice;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -12,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -26,7 +26,6 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JComboBox;
 
 public class QLCH_View extends JFrame {
 
@@ -170,6 +169,7 @@ public class QLCH_View extends JFrame {
 		panel.add(CheckKhong);
 
 		JButton btnThemCH = new JButton("Thêm");
+		btnThemCH.setBackground(Color.GREEN);
 		btnThemCH.setIcon(new ImageIcon(QLCH_View.class.getResource("+.png")));
 		btnThemCH.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -186,18 +186,21 @@ public class QLCH_View extends JFrame {
 		panel.add(btnTim);
 
 		JButton btnChinhSuaCH = new JButton("Chỉnh sửa");
+		btnChinhSuaCH.setBackground(Color.YELLOW);
 		btnChinhSuaCH.setIcon(new ImageIcon(QLCH_View.class.getResource("edit.png")));
 		btnChinhSuaCH.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnChinhSuaCH.setBounds(151, 524, 196, 50);
 		panel.add(btnChinhSuaCH);
 
 		JButton btnXoaCH = new JButton("Xóa");
+		btnXoaCH.setBackground(Color.RED);
 		btnXoaCH.setIcon(new ImageIcon(QLCH_View.class.getResource("delete.png")));
 		btnXoaCH.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnXoaCH.setBounds(357, 524, 131, 50);
 		panel.add(btnXoaCH);
 
 		JButton btnSapXepCH = new JButton("Sắp Xếp");
+		btnSapXepCH.setBackground(Color.DARK_GRAY);
 		btnSapXepCH.setIcon(new ImageIcon(QLCH_View.class.getResource("arrange.png")));
 		btnSapXepCH.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -208,6 +211,7 @@ public class QLCH_View extends JFrame {
 		panel.add(btnSapXepCH);
 
 		JButton btnSapXepBan = new JButton("Căn hộ đã bán");
+		btnSapXepBan.setBackground(Color.BLUE);
 		btnSapXepBan.setIcon(new ImageIcon(QLCH_View.class.getResource("list.png")));
 		btnSapXepBan.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -218,6 +222,7 @@ public class QLCH_View extends JFrame {
 		panel.add(btnSapXepBan);
 
 		JButton btnSapXepCon = new JButton("Căn hộ còn lại");
+		btnSapXepCon.setBackground(Color.BLUE);
 		btnSapXepCon.setIcon(new ImageIcon(QLCH_View.class.getResource("list.png")));
 		btnSapXepCon.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnSapXepCon.setBounds(927, 524, 253, 50);
@@ -249,9 +254,9 @@ public class QLCH_View extends JFrame {
 		separator_1.setBounds(10, 187, 1240, 2);
 		panel.add(separator_1);
 		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(140, 140, 196, 27);
-		panel.add(comboBox);
+		JComboBox LoaiCan = new JComboBox();
+		LoaiCan.setBounds(140, 140, 196, 27);
+		panel.add(LoaiCan);
 
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Quản Lý Khách Hàng", new ImageIcon(QLCH_View.class.getResource("user.png")), panel_1, null);
@@ -312,6 +317,7 @@ public class QLCH_View extends JFrame {
 		panel_1.add(lblNewLabel_1_1);
 
 		JButton btnThemKH = new JButton("Thêm");
+		btnThemKH.setBackground(Color.GREEN);
 		btnThemKH.setIcon(new ImageIcon(QLCH_View.class.getResource("+.png")));
 		btnThemKH.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnThemKH.setBounds(10, 536, 131, 50);
@@ -324,18 +330,21 @@ public class QLCH_View extends JFrame {
 		panel_1.add(btnTimKH);
 
 		JButton btnChinhKH = new JButton("Chỉnh sửa");
+		btnChinhKH.setBackground(Color.YELLOW);
 		btnChinhKH.setIcon(new ImageIcon(QLCH_View.class.getResource("edit.png")));
 		btnChinhKH.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnChinhKH.setBounds(151, 536, 196, 50);
 		panel_1.add(btnChinhKH);
 
 		JButton btnXoaKH = new JButton("Xóa");
+		btnXoaKH.setBackground(Color.RED);
 		btnXoaKH.setIcon(new ImageIcon(QLCH_View.class.getResource("delete.png")));
 		btnXoaKH.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnXoaKH.setBounds(357, 536, 131, 50);
 		panel_1.add(btnXoaKH);
 
 		JButton btnSapXepKH = new JButton("Sắp Xếp");
+		btnSapXepKH.setBackground(Color.BLUE);
 		btnSapXepKH.setIcon(new ImageIcon(QLCH_View.class.getResource("list.png")));
 		btnSapXepKH.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		btnSapXepKH.setBounds(498, 536, 171, 50);
@@ -380,7 +389,7 @@ public class QLCH_View extends JFrame {
 		panel_2.add(InHoaDon);
 
 		JButton btnInHoaDon = new JButton("In Hóa Đơn");
-		btnInHoaDon.setBackground(new Color(255, 255, 255));
+		btnInHoaDon.setBackground(Color.BLUE);
 		btnInHoaDon.setIcon(new ImageIcon(QLCH_View.class.getResource("print.png")));
 		btnInHoaDon.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnInHoaDon.setBounds(78, 111, 210, 57);
