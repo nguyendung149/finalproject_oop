@@ -8,6 +8,20 @@ import java.util.Scanner;
 public class CustomerManager {
 	private ArrayList<Customer> customers;
 
+	/**
+	 * @return the customers
+	 */
+	public ArrayList<Customer> getCustomers() {
+		return customers;
+	}
+
+	/**
+	 * @param customers the customers to set
+	 */
+	public void setCustomers(ArrayList<Customer> customers) {
+		this.customers = customers;
+	}
+
 	public CustomerManager() {
 		customers = new ArrayList<Customer>();
 	}

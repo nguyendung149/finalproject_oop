@@ -147,7 +147,6 @@ public class DanhSachCanHo {
 				if (maCanHo.startsWith("HPN")) {
 					CanHo e = canHo1;
 					danhSachDaBan.add(e);
-					this.tienSoTienTraThem(maCanHo);
 					soLuongHPN--;
 					for (CanHo canHo : danhSach) {
 						if (canHo.getMaCanHo().equals(maCanHo)) {
@@ -158,7 +157,6 @@ public class DanhSachCanHo {
 				} else if (maCanHo.startsWith("BPN")) {
 					CanHo e = canHo1;
 					danhSachDaBan.add(e);
-					this.tienSoTienTraThem(maCanHo);
 					soLuongBPN--;
 					for (CanHo canHo : danhSach) {
 						if (canHo.getMaCanHo().equals(maCanHo)) {
@@ -169,7 +167,6 @@ public class DanhSachCanHo {
 				} else if (maCanHo.startsWith("PEN")) {
 					CanHo e = canHo1;
 					danhSachDaBan.add(e);
-					this.tienSoTienTraThem(maCanHo);
 					soLuongPEN--;
 					for (CanHo canHo : danhSach) {
 						if (canHo.getMaCanHo().equals(maCanHo)) {
